@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class GameManager : MonoBehaviour
     private bool juegoTerminado = false;
     private UIManager uiManager;
     private CollisionObjetoYPuntuacion colision;
+
+    public KeyCode teclaReiniciar = KeyCode.R;
 
     void Start()
     {
@@ -17,7 +20,14 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (juegoTerminado) return;
+        if (juegoTerminado)
+        {
+            if (Input.GetKeyDown(teclaReiniciar))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            return;
+        }
 
         timer -= Time.deltaTime;
 
